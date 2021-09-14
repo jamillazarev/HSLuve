@@ -51,7 +51,7 @@
       </table>
     </div>
     <div  v-if="this.colors" @click="reloadColors" id="reload">Reload colors</div>
-    <aside v-if="this.colors" id="colorList" @click="removeCtx">
+    <aside v-if="this.colors" id="colorList" ref="colorList" @click="removeCtx">
       <div v-if="fillsSize()" class="colorGroup" id="fills">
         <div class="cat">Fills</div>
 
@@ -324,6 +324,9 @@
         }
         if (event.data.pluginMessage.type === "colors") {
           this.colors = event.data.pluginMessage.colors;
+          setTimeout(() => {
+            document.querySelectorAll('.color')[0] ? document.querySelectorAll('.color')[0].click() : false
+          }, 5)
         }
       };
 
